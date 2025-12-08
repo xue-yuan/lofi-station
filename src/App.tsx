@@ -1,5 +1,5 @@
 import { createSignal, createEffect, Show, onMount, onCleanup, type Component } from 'solid-js';
-import { playerState, toggleMute, nextStation, prevStation, setVolume } from './stores/playerStore';
+import { playerState, toggleMute, nextStation, prevStation, setVolume, setPlayerState } from './stores/playerStore';
 import YouTubePlayer from './components/YouTubePlayer';
 import ControlPanel from './components/ControlPanel';
 import PomodoroTimer from './components/PomodoroTimer';
@@ -7,6 +7,7 @@ import TodoList from './components/TodoList';
 import AmbientMixer from './components/AmbientMixer';
 import DigitalClock from './components/DigitalClock';
 import NoteBlock from './components/NoteBlock';
+import WelcomeScreen from './components/WelcomeScreen';
 
 const App: Component = () => {
   const [showTools, setShowTools] = createSignal(true);
@@ -17,6 +18,18 @@ const App: Component = () => {
   const [showAmbient, setShowAmbient] = createSignal(false);
   const [isIdle, setIsIdle] = createSignal(false);
   const [isImmersiveEnabled, setIsImmersiveEnabled] = createSignal(false);
+
+  // New: Welcome Screen State
+  const [hasStarted, setHasStarted] = createSignal(false);
+
+  // Handle "Tune In" - Unlock Audio Context
+  const handleStart = () => {
+    setHasStarted(true);
+    // Force Unmute (Browser allows this because it's a user gesture)
+    // We set the store state, and YouTubePlayer effect will pick it up
+    setPlayerState('isMuted', false);
+    setPlayerState('isPlaying', true);
+  };
 
   onMount(() => {
     let idleTimer: ReturnType<typeof setTimeout>;
@@ -91,10 +104,17 @@ const App: Component = () => {
 
   return (
     <div class="w-full h-full relative" data-theme="luxury">
+      <Show when={!hasStarted()}>
+        <WelcomeScreen onStart={handleStart} />
+      </Show>
+
+      {/* Background Player */}
       <YouTubePlayer />
+
+      {/* Center Logo / Title (overlay) */}
       <div class={`absolute top-10 left-10 z-10 flex flex-col gap-6 transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <h1 class="text-4xl font-bold tracking-widest text-shadow opacity-90 bg-black/30 backdrop-blur-sm p-4 rounded-xl border border-white/10">
-          LOFI <span class="text-primary">STATION</span>
+          LOFI <span class="text-primary">RADIO</span>
         </h1>
         <div class="hidden md:block"></div>
       </div>
@@ -145,7 +165,7 @@ const App: Component = () => {
           </Show>
         </button>
       </div>
-      <div class={`absolute top-20 right-10 z-10 hidden md:flex flex-col gap-4 transition-all duration-300 ${showTools() ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 translate-x-10 pointer-events-none'}`}>
+      <div class={`absolute top-20 right-10 z-10 hidden md:flex flex-col gap-4 transition-all duration-300 max-h-[calc(100vh-140px)] overflow-y-auto custom-scrollbar pr-2 pb-4 ${showTools() ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 translate-x-10 pointer-events-none'}`}>
         <div class={`transition-all duration-300 ${showPomodoro() ? 'max-h-[500px] opacity-100 scale-100' : 'max-h-0 opacity-0 scale-95 overflow-hidden'}`}>
           <PomodoroTimer />
         </div>

@@ -40,7 +40,7 @@ const TodoList: Component = () => {
     };
 
     return (
-        <div class="card glass w-64 shadow-xl border border-white/10 max-h-[400px] flex flex-col">
+        <div class="card glass w-80 shadow-xl border border-white/10 max-h-[400px] flex flex-col">
             <div class="card-body p-4 flex flex-col h-full">
                 <h2 class="card-title text-sm text-white/80 uppercase tracking-widest mb-2">
                     Tasks

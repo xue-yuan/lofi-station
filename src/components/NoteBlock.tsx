@@ -9,7 +9,7 @@ const NoteBlock: Component = () => {
     });
 
     return (
-        <div class="card glass w-64 shadow-xl border border-white/10 flex flex-col">
+        <div class="card glass w-80 shadow-xl border border-white/10 flex flex-col">
             <div class="card-body p-4 flex flex-col h-full">
                 <h2 class="card-title text-sm text-white/80 uppercase tracking-widest mb-2 flex justify-between items-center">
                     <span>Notes</span>

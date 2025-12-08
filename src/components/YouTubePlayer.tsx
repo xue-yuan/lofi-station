@@ -56,12 +56,20 @@ const YouTubePlayer: Component = () => {
         });
     };
 
-    const onPlayerReady = (event: any) => {
+    const onPlayerReady = (_event: any) => {
         player.setVolume(playerState.volume);
         if (playerState.isMuted) player.mute();
 
-        setPlaying(true);
-        event.target.playVideo();
+        // Initial State Check:
+        // If the player is already CUED or PAUSED, we are "loaded".
+        // onPlayerStateChange might not fire if we start in this state.
+        const state = player.getPlayerState();
+        console.log("Player Ready. Initial State:", state);
+
+        if (state === 5 || state === 2 || state === -1) {
+            // 5=CUED, 2=PAUSED, -1=UNSTARTED (Usually means loaded but not played)
+            setLoading(false);
+        }
 
         setPlayerReady(true);
     };
@@ -72,19 +80,23 @@ const YouTubePlayer: Component = () => {
         const state = event.data;
 
         if (state === 1) { // PLAYING
-            setLoading(false); // Hide loading overlay when video plays
+            setLoading(false);
             if (!playerState.isPlaying) setPlaying(true);
         }
         else if (state === 3) {
             setLoading(true);
         }
-        // If getting stuck in PAUSED (2) or CUED (5), OR if user paused manually -> Force Play
-        else if (state === 2 || state === 5) {
-            console.log("Auto-resuming playback...");
-            player.playVideo();
+        else if (state === 5) { // CUED (Video loaded and ready)
+            setLoading(false);
+            if (playerState.isPlaying) player.playVideo();
         }
-        else if (state === 2 && playerState.isPlaying) {
-            setPlaying(false);
+        else if (state === 2) { // PAUSED
+            // If we are paused, we are definitely 'loaded' enough to not show a spinner
+            setLoading(false);
+            if (playerState.isPlaying) {
+                console.log("Auto-resuming playback...");
+                player.playVideo();
+            }
         }
     };
 
@@ -110,6 +122,12 @@ const YouTubePlayer: Component = () => {
 
     createEffect(() => {
         if (!isPlayerReady() || !player || !player.playVideo || playerState.isLoading) return;
+
+        if (playerState.isPlaying) {
+            player.playVideo();
+        } else {
+            player.pauseVideo();
+        }
     });
 
     createEffect(() => {
