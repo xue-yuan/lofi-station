@@ -9,8 +9,8 @@ const NoteBlock: Component = () => {
     });
 
     return (
-        <div class="card glass w-80 shadow-xl border border-white/10 flex flex-col">
-            <div class="card-body p-4 flex flex-col h-full">
+        <div class="w-full flex flex-col">
+            <div class="flex flex-col h-full">
                 <h2 class="card-title text-sm text-white/80 uppercase tracking-widest mb-2 flex justify-between items-center">
                     <span>Notes</span>
                     <button
@@ -22,7 +22,7 @@ const NoteBlock: Component = () => {
                     </button>
                 </h2>
                 <textarea
-                    class="textarea textarea-bordered bg-white/5 text-white placeholder-white/40 focus:outline-none focus:border-primary w-full min-h-[150px] max-h-[250px] resize-y text-sm custom-scrollbar"
+                    class="textarea textarea-bordered bg-white/5 text-white placeholder-white/40 focus:outline-none focus:border-primary w-full min-h-[200px] max-h-[340px] resize-y text-sm custom-scrollbar"
                     placeholder="Type your thoughts here..."
                     value={notes()}
                     onInput={(e) => setNotes(e.currentTarget.value)}

@@ -1,38 +1,51 @@
-export interface Station {
+export interface Channel {
     id: string;
     title: string;
-    thumbnail: string;
+    author: string;
 }
 
-export const STATIONS: Station[] = [
+export interface StationCategory {
+    id: string;
+    name: string;
+    description: string;
+    channels: Channel[];
+}
+
+export const STATION_CATEGORIES: StationCategory[] = [
     {
-        id: "jfKfPfyJRdk",
-        title: "Lofi Girl - lofi hip hop radio 📚 beats to relax/study to",
-        thumbnail: "https://img.youtube.com/vi/jfKfPfyJRdk/maxresdefault.jpg",
+        id: 'lofi',
+        name: 'Lofi',
+        description: 'Beats to relax/study/sleep to',
+        channels: [
+            { id: 'jfKfPfyJRdk', title: 'lofi hip hop radio 📚 beats to relax/study to', author: 'Lofi Girl' },
+            { id: 'h_a3tqywv3I', title: 'christmas lofi music🎄cozy radio to get festive to', author: 'Lofi Girl' },
+            { id: 'rPjez8z61rI', title: 'lofi hip hop radio – beats to sleep/study/relax to ☕', author: 'STEEZYASFUCK' }
+        ]
     },
     {
-        id: "4xDzrJKXOOY",
-        title: "Synthwave Radio - synthwave radio 🌌 beats to chill/game to",
-        thumbnail: "https://img.youtube.com/vi/4xDzrJKXOOY/maxresdefault.jpg",
+        id: 'jazz',
+        name: 'Jazz',
+        description: 'Beats to relax/study/sleep to',
+        channels: [
+            { id: 'A8jDx9TLMQc', title: 'relaxing jazz music 🌹 cozy radio to study/chill to', author: 'Lofi Girl' },
+            { id: 'h_a3tqywv3I', title: 'christmas lofi music🎄cozy radio to get festive to', author: 'Lofi Girl' },
+        ]
     },
     {
-        id: "qH3fETPsqXU",
-        title: "Chill with Taiki - Beats to sleep/relax/study to",
-        thumbnail: "https://img.youtube.com/vi/qH3fETPsqXU/maxresdefault.jpg",
+        id: 'hip-hop',
+        name: 'Hip Hop',
+        description: 'Beats to relax/study/sleep to',
+        channels: [
+            { id: 'Oblb4xGO6k4', title: 'Boom Bap Hip Hop Instrumental Radio 24/7 | Beats to Work & Chill 🎧', author: ' Vibin\' 🎼' },
+        ]
     },
     {
-        id: "FWjZ0x2M8og",
-        title: "the bootleg boy - lofi hip hop radio 😴 sad & sleepy beats",
-        thumbnail: "https://img.youtube.com/vi/FWjZ0x2M8og/maxresdefault.jpg",
-    },
-    {
-        id: "i6WzngxTnBA",
-        title: "Chillhop Music - late night vibes radio - calm lofi / dreamy beats 😴",
-        thumbnail: "https://img.youtube.com/vi/i6WzngxTnBA/maxresdefault.jpg",
-    },
-    {
-        id: "vYIYIVmOo3Q",
-        title: "Lofi Tone Art - Calming Lofi Rain 🌧️ Chill Beats for Focus, Study & Sleep",
-        thumbnail: "https://img.youtube.com/vi/vYIYIVmOo3Q/maxresdefault.jpg",
+        id: 'cyberpunk',
+        name: 'Cyberpunk',
+        description: 'Futuristic & Sci-Fi Ambiance',
+        channels: [
+            { id: '4xDzrJKXOOY', title: 'synthwave radio 🌌 beats to chill/game to', author: 'Lofi Girl' },
+            { id: 'UedTcufyrHc', title: 'ChillSynth FM - lofi synthwave radio for retro dreaming', author: 'Nightride FM' }
+        ]
     }
 ];

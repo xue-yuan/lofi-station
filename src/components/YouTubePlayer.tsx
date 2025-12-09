@@ -40,7 +40,7 @@ const YouTubePlayer: Component = () => {
         player = new window.YT.Player('player', {
             height: '100%',
             width: '100%',
-            videoId: playerState.currentStationId,
+            videoId: playerState.currentChannelId,
             playerVars: {
                 'playsinline': 1,
                 'controls': 0,
@@ -125,13 +125,11 @@ const YouTubePlayer: Component = () => {
     });
 
     createEffect(() => {
-        const stationId = playerState.currentStationId;
+        const stationId = playerState.currentChannelId;
+        console.log("Station Changed:", stationId);
         if (player && player.loadVideoById && stationId) {
-            const currentData = player.getVideoData();
-            if (currentData && currentData.video_id === stationId) return;
-
-            player.loadVideoById(stationId);
             setLoading(true);
+            playerState.isPlaying ? player.loadVideoById(stationId) : player.cueVideoById(stationId);
         }
     });
 

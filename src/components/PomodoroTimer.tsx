@@ -196,8 +196,8 @@ const PomodoroTimer: Component = () => {
     };
 
     return (
-        <div class="card glass w-80 shadow-xl border border-white/10 flex flex-col relative overflow-hidden transition-all duration-300 min-h-[280px]">
-            <div class={`absolute inset-0 bg-base-300/95 z-20 transition-transform duration-300 p-4 flex flex-col gap-3 ${isSettingsOpen() ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div class="w-full flex flex-col relative overflow-hidden transition-all duration-300 min-h-[280px]">
+            <div class={`absolute inset-0 bg-black/90 z-20 transition-transform duration-300 p-4 flex flex-col gap-3 ${isSettingsOpen() ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div class="flex justify-between items-center mb-1 border-b border-white/10 pb-2">
                     <span class="text-xs font-bold uppercase tracking-widest text-white">Timer Settings</span>
                     <button class="btn btn-xs btn-ghost btn-circle text-white" onClick={() => setIsSettingsOpen(false)}>✕</button>
@@ -250,7 +250,7 @@ const PomodoroTimer: Component = () => {
                 </div>
             </div>
 
-            <div class="card-body p-4 flex flex-col h-full gap-4 justify-between">
+            <div class="flex flex-col h-full gap-4 justify-between p-2">
                 <div class="flex flex-col gap-2">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-2">

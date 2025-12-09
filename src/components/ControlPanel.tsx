@@ -1,6 +1,6 @@
 import { createMemo, Show, type Component } from "solid-js";
-import { playerState, setVolume, toggleMute, setStation } from "../stores/playerStore";
-import { STATIONS } from "../stations";
+import { playerState, setVolume, toggleMute, playRandomChannel } from "../stores/playerStore";
+import { STATION_CATEGORIES } from "../stations";
 
 const VolumeUpIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
@@ -14,11 +14,20 @@ const VolumeIcon = () => (
 const MutedIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
 );
-const NextIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+const MenuIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
 );
-const PrevIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+
+const ShuffleIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l-5 5M4 4l5 5" /></svg>
+);
+
+const GithubIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+);
+
+const WidgetIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
 );
 
 interface ControlPanelProps {
@@ -26,33 +35,37 @@ interface ControlPanelProps {
     isAmbientOpen?: boolean;
     isImmersive?: boolean;
     onToggleImmersive?: () => void;
+    onToggleStationSelector?: () => void;
+    isStationSelectorOpen?: boolean;
+    onToggleWidgets?: () => void;
+    isWidgetsOpen?: boolean;
 }
 
 const ControlPanel: Component<ControlPanelProps> = (props) => {
-    const currentStationIndex = createMemo(() =>
-        STATIONS.findIndex(s => s.id === playerState.currentStationId)
+    const currentCategory = createMemo(() =>
+        STATION_CATEGORIES.find(c => c.id === playerState.currentCategoryId)
     );
 
-    const currentStation = createMemo(() => STATIONS[currentStationIndex()]);
+    const currentChannel = createMemo(() => {
+        const cat = currentCategory();
+        return cat?.channels.find(c => c.id === playerState.currentChannelId);
+    });
 
-    const handleNext = () => {
-        const nextIndex = (currentStationIndex() + 1) % STATIONS.length;
-        setStation(STATIONS[nextIndex].id);
-    };
-
-    const handlePrev = () => {
-        let prevIndex = currentStationIndex() - 1;
-        if (prevIndex < 0) prevIndex = STATIONS.length - 1;
-        setStation(STATIONS[prevIndex].id);
+    const handleRandom = () => {
+        if (playerState.currentCategoryId) {
+            playRandomChannel(playerState.currentCategoryId);
+        }
     };
 
     return (
-        <div class="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-base-300/90 to-transparent pb-10 pt-20">
-            <div class="max-w-4xl mx-auto flex flex-col md:grid md:grid-cols-3 items-center gap-6 p-4 bg-base-100/60 backdrop-blur-md rounded-box border border-base-content/10 shadow-lg relative">
-                <div class="flex items-center gap-4 w-full md:justify-self-start overflow-hidden">
+        <div class="fixed bottom-8 left-8 z-50">
+            <div class="flex flex-col md:grid md:grid-cols-[auto_auto_auto] items-center gap-6 p-4 bg-black/60 backdrop-blur-md rounded-box border border-white/10 shadow-lg relative max-w-[90vw]">
+                <div class="flex items-center gap-4 md:justify-self-start overflow-hidden max-w-[300px]">
                     <div class="avatar flex-shrink-0">
-                        <div class="w-12 rounded-xl">
-                            <img src={currentStation().thumbnail} alt="Station" />
+                        <div class="w-12 rounded-xl ring ring-white/10 ring-offset-base-100 ring-offset-2">
+                            <Show when={playerState.currentChannelId} fallback={<div class="w-full h-full bg-white/10"></div>}>
+                                <img src={`https://img.youtube.com/vi/${playerState.currentChannelId}/mqdefault.jpg`} alt="Channel" />
+                            </Show>
                         </div>
                     </div>
                     <div class="min-w-0 flex-1 overflow-hidden relative group">
@@ -61,33 +74,39 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                         <div class="w-full overflow-hidden mask-linear-fade">
                             <div class="flex w-max animate-marquee hover:pause gap-8">
                                 <h3 class="font-bold text-sm md:text-md px-2 text-white whitespace-nowrap">
-                                    {currentStation().title}
+                                    {currentChannel()?.title || "Loading..."}
                                 </h3>
                                 <h3 class="font-bold text-sm md:text-md px-2 text-white whitespace-nowrap" aria-hidden="true">
-                                    {currentStation().title}
+                                    {currentChannel()?.title || "Loading..."}
                                 </h3>
                             </div>
                         </div>
-                        <p class="text-xs text-base-content/70 px-2 mt-1 truncate">Live Radio</p>
+                        <p class="text-xs text-white/70 px-2 mt-1 truncate font-medium uppercase tracking-wider">{currentChannel()?.author || currentCategory()?.name}</p>
                     </div>
                 </div>
+
                 <div class="flex items-center gap-4 md:justify-self-center">
-                    <button class="btn btn-circle btn-ghost btn-sm" onClick={handlePrev}>
-                        <PrevIcon />
+                    <button
+                        class={`btn btn-circle btn-ghost btn-sm ${props.isStationSelectorOpen ? 'text-primary bg-primary/20' : 'text-white'}`}
+                        onClick={() => props.onToggleStationSelector?.()}
+                        title="Stations Menu"
+                    >
+                        <MenuIcon />
                     </button>
                     <button
-                        class="btn btn-circle btn-primary btn-lg shadow-glow"
+                        class="btn btn-circle btn-primary btn-lg shadow-glow text-white"
                         onClick={toggleMute}
                         disabled={playerState.isLoading}
                     >
-                        <Show when={!playerState.isLoading} fallback={<span class="loading loading-spinner text-primary-content"></span>}>
+                        <Show when={!playerState.isLoading} fallback={<span class="loading loading-spinner text-white"></span>}>
                             {playerState.isMuted ? <MutedLargeIcon /> : <VolumeUpIcon />}
                         </Show>
                     </button>
-                    <button class="btn btn-circle btn-ghost btn-sm" onClick={handleNext}>
-                        <NextIcon />
+                    <button class="btn btn-circle btn-ghost btn-sm text-white" onClick={handleRandom} title="Shuffle Current Station">
+                        <ShuffleIcon />
                     </button>
                 </div>
+
                 <div class="flex items-center gap-4 min-w-[150px] md:justify-self-end">
                     <div class="flex items-center gap-1">
                         <button
@@ -98,6 +117,13 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>
                         </button>
                         <button
+                            class={`btn btn-circle btn-ghost btn-sm ${props.isWidgetsOpen ? 'text-primary' : 'text-white/40 hover:text-white'}`}
+                            onClick={() => props.onToggleWidgets?.()}
+                            title="Widgets Panel"
+                        >
+                            <WidgetIcon />
+                        </button>
+                        <button
                             class={`btn btn-circle btn-ghost btn-sm ${props.isAmbientOpen ? 'text-primary' : 'text-white/40 hover:text-white'}`}
                             onClick={() => props.onToggleAmbient?.()}
                             title="Ambient Mixer"
@@ -106,8 +132,18 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                         </button>
                     </div>
                     <div class="h-4 w-[1px] bg-white/10"></div>
+
+                    <a
+                        href="https://github.com/xue-yuan/lofi-station"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-circle btn-ghost btn-sm text-white/40 hover:text-white"
+                        title="View on GitHub"
+                    >
+                        <GithubIcon />
+                    </a>
                     <div class="flex items-center gap-2">
-                        <button class="btn btn-circle btn-ghost btn-xs" onClick={toggleMute}>
+                        <button class="btn btn-circle btn-ghost btn-xs text-white" onClick={toggleMute}>
                             {playerState.isMuted || playerState.volume === 0 ? <MutedIcon /> : <VolumeIcon />}
                         </button>
                         <input
