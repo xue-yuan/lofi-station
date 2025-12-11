@@ -69,7 +69,12 @@ const AmbientMixer: Component<AmbientMixerProps> = (props) => {
         >
             <div class="w-[300px] h-[400px] bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
                 <div class="p-4 border-b border-white/10 flex items-center justify-between shrink-0 bg-white/5">
-                    <h3 class="font-bold text-white tracking-widest uppercase text-sm">Ambient Mixer</h3>
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                        </svg>
+                        <h3 class="font-bold text-white tracking-widest uppercase text-xs">Ambient</h3>
+                    </div>
                     <button class="btn btn-xs btn-ghost btn-circle text-white/40 hover:text-white" onClick={props.onClose}>✕</button>
                 </div>
 

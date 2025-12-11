@@ -34,7 +34,6 @@ const ColorPaletteIcon = () => (
 );
 
 import StationSelector from "./StationSelector";
-import WidgetPanel from "./WidgetPanel";
 import AmbientMixer from "./AmbientMixer";
 import ThemeSelector from "./ThemeSelector";
 
@@ -78,8 +77,8 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
     };
 
     return (
-        <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 origin-bottom">
-            <div class="flex flex-col md:grid md:grid-cols-[auto_auto_auto] items-center gap-6 p-4 bg-black/60 backdrop-blur-md rounded-box border border-white/10 shadow-lg relative max-w-[90vw]">
+        <div class="fixed bottom-8 left-8 right-8 z-50 origin-bottom flex justify-center pointer-events-none">
+            <div class="pointer-events-auto flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-center gap-6 p-4 px-8 bg-black/60 backdrop-blur-md rounded-box border border-white/10 shadow-lg relative w-full max-w-5xl">
                 <div class="flex items-center gap-4 md:justify-self-start overflow-hidden max-w-[300px]">
                     <div class="avatar flex-shrink-0">
                         <div class="w-12 rounded-xl ring ring-white/10 ring-offset-base-100 ring-offset-2">
@@ -160,20 +159,6 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                                 <ColorPaletteIcon />
                             </button>
                         </div>
-
-                        <div class="relative">
-                            <WidgetPanel
-                                isOpen={props.isWidgetsOpen || false}
-                                onClose={props.onCloseWidgets || (() => { })}
-                            />
-                            <button
-                                class={`btn btn-circle btn-ghost btn-sm ${props.isWidgetsOpen ? 'text-primary' : 'text-white/40 hover:text-white'}`}
-                                onClick={() => props.onToggleWidgets?.()}
-                                title="Widgets Panel"
-                            >
-                                <WidgetIcon />
-                            </button>
-                        </div>
                         <div class="relative">
                             <AmbientMixer
                                 isOpen={props.isAmbientOpen || false}
@@ -185,6 +170,15 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                                 title="Ambient Mixer"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <button
+                                class={`btn btn-circle btn-ghost btn-sm ${props.isWidgetsOpen ? 'text-primary' : 'text-white/40 hover:text-white'}`}
+                                onClick={() => props.onToggleWidgets?.()}
+                                title="Widgets Panel"
+                            >
+                                <WidgetIcon />
                             </button>
                         </div>
                     </div>

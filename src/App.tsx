@@ -2,6 +2,7 @@ import { createSignal, createEffect, Show, onMount, onCleanup, type Component } 
 import { playerState, toggleMute, setVolume, setPlayerState } from './stores/playerStore';
 import YouTubePlayer from './components/YouTubePlayer';
 import ControlPanel from './components/ControlPanel';
+import WidgetPanel from './components/WidgetPanel';
 import DigitalClock from './components/DigitalClock';
 import WelcomeScreen from './components/WelcomeScreen';
 
@@ -10,7 +11,8 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 
 const App: Component = () => {
-  const [activePanel, setActivePanel] = createSignal<'station' | 'ambient' | 'widgets' | 'theme' | null>(null);
+  const [activePanel, setActivePanel] = createSignal<'station' | 'ambient' | 'theme' | null>(null);
+  const [isWidgetsOpen, setIsWidgetsOpen] = createSignal(false);
   const [isIdle, setIsIdle] = createSignal(false);
   const [isImmersiveEnabled, setIsImmersiveEnabled] = createSignal(false);
 
@@ -24,9 +26,11 @@ const App: Component = () => {
     setPlayerState('isPlaying', true);
   };
 
-  const togglePanel = (panel: 'station' | 'ambient' | 'widgets' | 'theme') => {
+  const togglePanel = (panel: 'station' | 'ambient' | 'theme') => {
     setActivePanel(prev => prev === panel ? null : panel);
   };
+
+  const toggleWidgets = () => setIsWidgetsOpen(prev => !prev);
 
   const handleThemeChange = (theme: string) => {
     setActiveTheme(theme);
@@ -104,6 +108,13 @@ const App: Component = () => {
         <WelcomeScreen onStart={handleStart} />
       </Show>
 
+      <div class={`transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <WidgetPanel
+          isOpen={isWidgetsOpen()}
+          onClose={() => setIsWidgetsOpen(false)}
+        />
+      </div>
+
       <div class={`transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100 z-50 relative'}`}>
         <Sidebar />
       </div>
@@ -116,7 +127,7 @@ const App: Component = () => {
         <Header />
       </div>
 
-      <div class={`absolute top-10 right-10 z-10 transition-opacity duration-1000 ${isIdle() ? 'opacity-0' : 'opacity-80'}`}>
+      <div class={`absolute bottom-32 left-10 z-10 transition-opacity duration-1000 ${isIdle() ? 'opacity-0' : 'opacity-80'}`}>
         <DigitalClock />
       </div>
 
@@ -133,9 +144,9 @@ const App: Component = () => {
           isStationSelectorOpen={activePanel() === 'station'}
           onCloseStationSelector={() => setActivePanel(null)}
 
-          onToggleWidgets={() => togglePanel('widgets')}
-          isWidgetsOpen={activePanel() === 'widgets'}
-          onCloseWidgets={() => setActivePanel(null)}
+          onToggleWidgets={toggleWidgets}
+          isWidgetsOpen={isWidgetsOpen()}
+          onCloseWidgets={() => setIsWidgetsOpen(false)}
 
           onToggleTheme={() => togglePanel('theme')}
           isThemeOpen={activePanel() === 'theme'}

@@ -36,12 +36,19 @@ const StationSelector: Component<StationSelectorProps> = (props) => {
             <div class="w-[300px] h-[400px] bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
 
                 <div class="p-4 border-b border-white/10 flex items-center justify-between shrink-0 bg-white/5">
-                    <Show when={view() === 'channels'} fallback={<h3 class="font-bold text-white tracking-widest uppercase text-sm">Select Station</h3>}>
+                    <Show when={view() === 'channels'} fallback={
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
+                            <h3 class="font-bold text-white tracking-widest uppercase text-xs">Stations</h3>
+                        </div>
+                    }>
                         <div class="flex items-center gap-2">
                             <button class="btn btn-xs btn-ghost btn-circle text-white/60 hover:text-white" onClick={handleBack}>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                             </button>
-                            <h3 class="font-bold text-white tracking-widest uppercase text-sm truncate max-w-[150px]">{selectedCategory()?.name}</h3>
+                            <h3 class="font-bold text-white tracking-widest uppercase text-xs truncate max-w-[150px]">{selectedCategory()?.name}</h3>
                         </div>
                     </Show>
                     <button class="btn btn-xs btn-ghost btn-circle text-white/40 hover:text-white" onClick={props.onClose}>✕</button>
