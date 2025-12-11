@@ -1,5 +1,16 @@
 [
     {
+        "version": "1.4.0",
+        "date": "2025-12-11",
+        "changes": [
+            "Draggable Widgets: Widget Panel is now a floating, persistent window that can be dragged anywhere.",
+            "Immersive Integration: Widgets now respect Zen Mode and auto-hide with the interface.",
+            "Assets Overhaul: New calm, abstract Favicon and atmospheric Open Graph image.",
+            "Visual Refinements: Standardized headers, repositioned clock, and enhanced transparency.",
+            "SEO: Added comprehensive Open Graph meta tags."
+        ]
+    },
+    {
         "version": "1.3.0",
         "date": "2025-12-10",
         "changes": [

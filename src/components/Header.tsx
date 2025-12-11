@@ -12,7 +12,7 @@ const Header: Component = () => {
     return (
         <div class="flex flex-col gap-2 p-4">
             <h1 class="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-white/20 drop-shadow-sm select-none">
-                LOFI<span class="text-primary ml-2">STATION</span>
+                LOFI<span class="text-primary ml-2">RADIO</span>
             </h1>
 
             {quote() && (
