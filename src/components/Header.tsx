@@ -14,7 +14,6 @@ const Header: Component = () => {
             <h1 class="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white/80 to-white/20 drop-shadow-sm select-none">
                 LOFI<span class="text-primary ml-2">RADIO</span>
             </h1>
-
             {quote() && (
                 <div class="flex flex-col gap-1 max-w-md animate-fade-in-up">
                     <p class="text-sm font-light text-white/70 italic tracking-wide leading-relaxed">

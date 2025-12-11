@@ -1,5 +1,15 @@
 [
     {
+        "version": "1.4.1",
+        "date": "2025-12-12",
+        "changes": [
+            "Mobile Optimization: Station Selector is now fixed at the bottom center to prevent overlapping.",
+            "Tablet Layout: Control Panel now uses vertical stack layout on tablet (md) screens for better touch usability.",
+            "Clock Positioning: Adjusted Digital Clock dynamic positioning to adapt to vertical/horizontal Control Panel.",
+            "Mobile Experience: Automatically hide complex widgets (Notes, Tasks) on small screens for cleaner UI."
+        ]
+    },
+    {
         "version": "1.4.0",
         "date": "2025-12-11",
         "changes": [

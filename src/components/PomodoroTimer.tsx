@@ -129,7 +129,9 @@ const PomodoroTimer: Component = () => {
     };
 
     const toggleTimer = async () => {
-        if (timeline().length === 0) return;
+        if (timeline().length === 0) {
+            return
+        };
 
         if (!isActive()) {
             await requestNotificationPermission();
@@ -185,11 +187,11 @@ const PomodoroTimer: Component = () => {
             }
             setIsActive(false);
             clearInterval(timerInterval);
+
             const t = newTimeline;
             const newStage = t[currentStageIndex() % t.length];
             const duration = getDuration(newStage.type);
             setTimeLeft(duration * 60);
-
         } else if (index < currentStageIndex()) {
             setCurrentStageIndex(currentStageIndex() - 1);
         }
@@ -202,7 +204,6 @@ const PomodoroTimer: Component = () => {
                     <span class="text-xs font-bold uppercase tracking-widest text-white">Timer Settings</span>
                     <button class="btn btn-xs btn-ghost btn-circle text-white" onClick={() => setIsSettingsOpen(false)}>✕</button>
                 </div>
-
                 <div class="flex-1 overflow-y-auto custom-scrollbar pr-1 flex flex-col gap-4">
                     <div class="space-y-3">
                         <div class="flex flex-col gap-1">
@@ -218,9 +219,7 @@ const PomodoroTimer: Component = () => {
                             <input type="range" min="1" max="60" value={longBreakTime()} onInput={(e) => setLongBreakTime(Number(e.currentTarget.value))} class="range range-xs range-accent" />
                         </div>
                     </div>
-
                     <div class="divider my-0 opacity-50"></div>
-
                     <div class="flex flex-col gap-2">
                         <span class="text-[10px] uppercase font-bold text-white/40">Sequence</span>
                         <div class="flex flex-col gap-1 max-h-[120px] overflow-y-auto custom-scrollbar p-1 bg-black/20 rounded-box">
@@ -249,7 +248,6 @@ const PomodoroTimer: Component = () => {
                     </div>
                 </div>
             </div>
-
             <div class="flex flex-col h-full gap-4 justify-between p-2">
                 <div class="flex flex-col gap-2">
                     <div class="flex justify-between items-center">
@@ -264,7 +262,6 @@ const PomodoroTimer: Component = () => {
                                 {currentStage().name}
                             </span>
                         </div>
-
                         <div class="flex items-center gap-1">
                             <span class="text-[10px] text-white/40 uppercase">Auto</span>
                             <input
@@ -290,7 +287,6 @@ const PomodoroTimer: Component = () => {
                         </For>
                     </div>
                 </div>
-
                 <div class="text-center py-5 relative group flex-1 flex items-center justify-center">
                     <span class={`countdown font-mono text-6xl text-white`}>
                         <span style={{ "--value": Math.floor(Math.floor(timeLeft() / 60) / 10) } as any}></span>
@@ -299,7 +295,6 @@ const PomodoroTimer: Component = () => {
                         <span style={{ "--value": Math.floor(timeLeft() % 10) } as any}></span>
                     </span>
                 </div>
-
                 <div class="flex gap-2 justify-center">
                     <button
                         class={`btn btn-sm flex-1 ${isActive()

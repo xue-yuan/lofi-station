@@ -44,7 +44,6 @@ const TodoList: Component = () => {
             <div class="flex flex-col h-full">
                 <h2 class="card-title text-sm text-white/80 uppercase tracking-widest mb-2 flex justify-between items-center">
                 </h2>
-
                 <form onSubmit={addTodo} class="mb-3">
                     <input
                         type="text"
@@ -54,7 +53,6 @@ const TodoList: Component = () => {
                         onInput={(e) => setInputValue(e.currentTarget.value)}
                     />
                 </form>
-
                 <div class="flex-1 overflow-y-auto pr-1 space-y-2 custom-scrollbar min-h-0">
                     <For each={todos()} fallback={<div class="text-xs text-center text-white/30 py-4">No tasks yet</div>}>
                         {(todo) => (

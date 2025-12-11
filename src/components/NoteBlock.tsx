@@ -56,7 +56,6 @@ const NoteBlock: Component = () => {
                             </For>
                         </div>
                     </div>
-
                     <button
                         class="btn btn-xs btn-ghost text-white/30 hover:text-white"
                         onClick={handleClear}

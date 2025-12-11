@@ -26,7 +26,6 @@ const DigitalClock: Component = () => {
                     {format(time().getSeconds())}
                 </span>
             </div>
-
             <div class="text-lg md:text-xl text-white/80 font-bold uppercase tracking-[0.2em] ml-1 mt-[-10px] drop-shadow-md">
                 {dateString()}
             </div>

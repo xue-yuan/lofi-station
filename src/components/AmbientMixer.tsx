@@ -77,7 +77,6 @@ const AmbientMixer: Component<AmbientMixerProps> = (props) => {
                     </div>
                     <button class="btn btn-xs btn-ghost btn-circle text-white/40 hover:text-white" onClick={props.onClose}>✕</button>
                 </div>
-
                 <div class="flex-1 overflow-y-auto custom-scrollbar p-4 flex flex-col gap-6">
                     <For each={SOUNDS}>
                         {(sound) => (

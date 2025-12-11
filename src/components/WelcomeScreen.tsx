@@ -19,7 +19,6 @@ const WelcomeScreen: Component<WelcomeScreenProps> = (props) => {
                         RADIO
                     </h1>
                 </div>
-
                 <div class="pt-8">
                     <button
                         class="group relative px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
@@ -27,11 +26,9 @@ const WelcomeScreen: Component<WelcomeScreenProps> = (props) => {
                         <span class="text-xl font-light tracking-[0.2em] text-white/90 group-hover:text-white uppercase">
                             Click to Tune In
                         </span>
-
                         <div class="absolute inset-0 rounded-full border border-white/30 animate-ping opacity-20"></div>
                     </button>
                 </div>
-
                 <p class="text-white/30 text-sm font-mono mt-8">
                     Focus • Relax • Code
                 </p>

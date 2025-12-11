@@ -3,8 +3,6 @@ import PomodoroTimer from "./PomodoroTimer";
 import TodoList from "./TodoList";
 import NoteBlock from "./NoteBlock";
 
-
-
 type WidgetTab = 'timer' | 'todo' | 'notes';
 
 interface WidgetPanelProps {
@@ -19,7 +17,11 @@ const WidgetPanel: Component<WidgetPanelProps> = (props) => {
     const [dragOffset, setDragOffset] = createSignal({ x: 0, y: 0 });
 
     onMount(() => {
-        setPosition({ x: window.innerWidth - 420, y: 120 });
+        const panelWidth = 320;
+        const panelHeight = 380;
+        const x = (window.innerWidth - panelWidth) / 2;
+        const y = (window.innerHeight - panelHeight) / 2;
+        setPosition({ x: Math.max(0, x), y: Math.max(0, y) });
     });
 
     const startDrag = (e: MouseEvent) => {
@@ -29,7 +31,18 @@ const WidgetPanel: Component<WidgetPanelProps> = (props) => {
 
     const onDrag = (e: MouseEvent) => {
         if (isDragging()) {
-            setPosition({ x: e.clientX - dragOffset().x, y: e.clientY - dragOffset().y });
+            const panelWidth = 320;
+            const panelHeight = 400;
+            const maxX = window.innerWidth - panelWidth;
+            const maxY = window.innerHeight - panelHeight;
+
+            let newX = e.clientX - dragOffset().x;
+            let newY = e.clientY - dragOffset().y;
+
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+
+            setPosition({ x: newX, y: newY });
         }
     };
 
@@ -49,7 +62,7 @@ const WidgetPanel: Component<WidgetPanelProps> = (props) => {
 
     return (
         <div
-            class={`fixed z-50 transition-opacity duration-300 ${props.isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+            class={`fixed z-50 transition-opacity duration-300 ${props.isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} hidden md:block`}
             style={{ left: `${position().x}px`, top: `${position().y}px` }}
         >
             <div class="bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden w-[320px] shadow-2xl">
@@ -95,7 +108,6 @@ const WidgetPanel: Component<WidgetPanelProps> = (props) => {
                         </button>
                     </div>
                 </div>
-
                 <div class="relative h-[340px]">
                     <div class={`h-full transition-opacity duration-300 ${activeTab() === 'timer' ? 'block' : 'hidden'}`}>
                         <div class="p-4 h-full flex flex-col items-center justify-center">

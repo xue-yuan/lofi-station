@@ -42,7 +42,6 @@ const ThemeSelector: Component<ThemeSelectorProps> = (props) => {
                         </svg>
                     </button>
                 </div>
-
                 <div class="p-4 grid grid-cols-3 gap-3">
                     <For each={THEMES}>
                         {(theme) => (

@@ -5,15 +5,19 @@ import { STATION_CATEGORIES } from "../stations";
 const VolumeUpIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
 );
+
 const MutedLargeIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
 );
+
 const VolumeIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
 );
+
 const MutedIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
 );
+
 const MenuIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
 );
@@ -29,6 +33,7 @@ const GithubIcon = () => (
 const WidgetIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
 );
+
 const ColorPaletteIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
 );
@@ -77,9 +82,9 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
     };
 
     return (
-        <div class="fixed bottom-8 left-8 right-8 z-50 origin-bottom flex justify-center pointer-events-none">
-            <div class="pointer-events-auto flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-center gap-6 p-4 px-8 bg-black/60 backdrop-blur-md rounded-box border border-white/10 shadow-lg relative w-full max-w-5xl">
-                <div class="flex items-center gap-4 md:justify-self-start overflow-hidden max-w-[300px]">
+        <div class="fixed bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 z-50 origin-bottom flex justify-center pointer-events-none">
+            <div class="pointer-events-auto flex flex-col lg:grid lg:grid-cols-[1fr_auto_1fr] items-center gap-6 p-4 px-4 lg:px-8 bg-black/60 backdrop-blur-md rounded-box border border-white/10 shadow-lg relative w-full max-w-5xl">
+                <div class="flex items-center gap-4 lg:justify-self-start overflow-hidden max-w-[300px]">
                     <div class="avatar flex-shrink-0">
                         <div class="w-12 rounded-xl ring ring-white/10 ring-offset-base-100 ring-offset-2">
                             <Show when={playerState.currentChannelId} fallback={<div class="w-full h-full bg-white/10"></div>}>
@@ -105,8 +110,7 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                         </p>
                     </div>
                 </div>
-
-                <div class="flex items-center gap-4 md:justify-self-center">
+                <div class="flex items-center gap-4 lg:justify-self-center">
                     <div class="relative">
                         <StationSelector
                             isOpen={props.isStationSelectorOpen || false}
@@ -133,8 +137,7 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                         <ShuffleIcon />
                     </button>
                 </div>
-
-                <div class="flex items-center gap-4 min-w-[150px] md:justify-self-end">
+                <div class="flex items-center gap-4 min-w-[150px] lg:justify-self-end">
                     <div class="flex items-center gap-1">
                         <button
                             class={`btn btn-circle btn-ghost btn-sm ${props.isImmersive ? 'text-primary' : 'text-white/40 hover:text-white'}`}
@@ -144,7 +147,7 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>
                         </button>
 
-                        <div class="relative">
+                        <div class="relative hidden md:block">
                             <ThemeSelector
                                 isOpen={props.isThemeOpen || false}
                                 onClose={props.onCloseTheme || (() => { })}
@@ -159,7 +162,7 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                                 <ColorPaletteIcon />
                             </button>
                         </div>
-                        <div class="relative">
+                        <div class="relative hidden md:block">
                             <AmbientMixer
                                 isOpen={props.isAmbientOpen || false}
                                 onClose={props.onCloseAmbient || (() => { })}
@@ -172,7 +175,7 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
                             </button>
                         </div>
-                        <div class="relative">
+                        <div class="relative hidden md:block">
                             <button
                                 class={`btn btn-circle btn-ghost btn-sm ${props.isWidgetsOpen ? 'text-primary' : 'text-white/40 hover:text-white'}`}
                                 onClick={() => props.onToggleWidgets?.()}
@@ -183,7 +186,6 @@ const ControlPanel: Component<ControlPanelProps> = (props) => {
                         </div>
                     </div>
                     <div class="h-4 w-[1px] bg-white/10"></div>
-
                     <a
                         href="https://github.com/xue-yuan/lofi-station"
                         target="_blank"

@@ -5,9 +5,7 @@ import ControlPanel from './components/ControlPanel';
 import WidgetPanel from './components/WidgetPanel';
 import DigitalClock from './components/DigitalClock';
 import WelcomeScreen from './components/WelcomeScreen';
-
 import Sidebar from './components/Sidebar';
-
 import Header from './components/Header';
 
 const App: Component = () => {
@@ -107,30 +105,23 @@ const App: Component = () => {
       <Show when={!hasStarted()}>
         <WelcomeScreen onStart={handleStart} />
       </Show>
-
       <div class={`transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <WidgetPanel
           isOpen={isWidgetsOpen()}
           onClose={() => setIsWidgetsOpen(false)}
         />
       </div>
-
-      <div class={`transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100 z-50 relative'}`}>
+      <div class={`transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100 z-[60] relative'}`}>
         <Sidebar />
       </div>
-
       <YouTubePlayer />
-
       <div class="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_center,transparent_55%,rgba(0,0,0,0.8)_100%)]"></div>
-
-      <div class={`absolute top-10 left-10 z-10 transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+      <div class={`absolute top-6 left-6 md:top-10 md:left-10 z-10 transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <Header />
       </div>
-
-      <div class={`absolute bottom-32 left-10 z-10 transition-opacity duration-1000 ${isIdle() ? 'opacity-0' : 'opacity-80'}`}>
+      <div class={`absolute bottom-64 left-6 md:bottom-64 md:left-10 lg:bottom-32 z-10 transition-opacity duration-1000 ${isIdle() ? 'opacity-0' : 'opacity-80'}`}>
         <DigitalClock />
       </div>
-
       <div class={`transition-opacity duration-1000 ${isIdle() ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <ControlPanel
           onToggleAmbient={() => togglePanel('ambient')}
