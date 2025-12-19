@@ -1,5 +1,13 @@
 [
     {
+        "version": "1.4.2",
+        "date": "2025-12-19",
+        "changes": [
+            "Unified Mute: Muting the player now also silences all ambient sounds.",
+            "Visual Tweaks: Increased opacity of menus (Ambient, Stations, Themes) for better readability when overlapping."
+        ]
+    },
+    {
         "version": "1.4.1",
         "date": "2025-12-12",
         "changes": [

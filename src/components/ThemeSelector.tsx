@@ -25,7 +25,7 @@ const ThemeSelector: Component<ThemeSelectorProps> = (props) => {
         <div
             class={`absolute bottom-full mb-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 origin-bottom ${props.isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4 pointer-events-none'}`}
         >
-            <div class="bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden w-[300px] shadow-2xl transition-all duration-300">
+            <div class="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden w-[300px] shadow-2xl transition-all duration-300">
                 <div class="flex items-center p-3 bg-white/5 border-b border-white/5 pr-3 justify-between">
                     <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">

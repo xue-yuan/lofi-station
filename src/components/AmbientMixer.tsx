@@ -1,4 +1,5 @@
-import { createSignal, onMount, onCleanup, For, type Component } from "solid-js";
+import { createSignal, onMount, onCleanup, createEffect, For, type Component } from "solid-js";
+import { playerState } from "../stores/playerStore";
 
 interface SoundTrack {
     id: string;
@@ -51,23 +52,35 @@ const AmbientMixer: Component<AmbientMixerProps> = (props) => {
 
     const handleVolumeChange = (id: string, vol: number) => {
         setVolumes(prev => ({ ...prev, [id]: vol }));
+    };
 
-        const audio = audioRefs[id];
-        if (audio) {
-            if (vol > 0 && audio.paused) {
+    createEffect(() => {
+        const muted = playerState.isMuted;
+        const currentVolumes = volumes();
+
+        Object.keys(audioRefs).forEach(id => {
+            const audio = audioRefs[id];
+            if (!audio) return;
+
+            const userVolume = currentVolumes[id] || 0;
+            // If global mute is on, effective volume is 0. Otherwise, use user set volume.
+            const effectiveVolume = muted ? 0 : userVolume;
+
+            audio.volume = effectiveVolume;
+
+            if (effectiveVolume > 0 && audio.paused) {
                 audio.play().catch(e => console.error("Audio play failed:", e));
-            } else if (vol === 0 && !audio.paused) {
+            } else if (effectiveVolume === 0 && !audio.paused) {
                 audio.pause();
             }
-            audio.volume = vol;
-        }
-    };
+        });
+    });
 
     return (
         <div
             class={`absolute bottom-full mb-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 origin-bottom ${props.isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4 pointer-events-none'}`}
         >
-            <div class="w-[300px] h-[400px] bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="w-[300px] h-[400px] bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
                 <div class="p-4 border-b border-white/10 flex items-center justify-between shrink-0 bg-white/5">
                     <div class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">

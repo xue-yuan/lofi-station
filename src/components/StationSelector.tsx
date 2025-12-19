@@ -33,7 +33,7 @@ const StationSelector: Component<StationSelectorProps> = (props) => {
         <div
             class={`fixed bottom-56 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 origin-bottom md:absolute md:bottom-full md:mb-8 ${props.isOpen ? 'opacity-100 scale-100 md:translate-y-0' : 'opacity-0 scale-95 pointer-events-none md:translate-y-4'}`}
         >
-            <div class="w-[300px] h-[400px] bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="w-[300px] h-[400px] bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
                 <div class="p-4 border-b border-white/10 flex items-center justify-between shrink-0 bg-white/5">
                     <Show when={view() === 'channels'} fallback={
                         <div class="flex items-center gap-2">
