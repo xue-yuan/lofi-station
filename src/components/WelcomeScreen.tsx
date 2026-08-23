@@ -21,8 +21,8 @@ const WelcomeScreen: Component<WelcomeScreenProps> = (props) => {
           <h1 class="text-6xl md:text-8xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-br from-white to-white/50 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
             LOFI
           </h1>
-          <h1 class="text-6xl md:text-8xl font-black tracking-widest text-primary drop-shadow-[0_0_25px_rgba(var(--p),0.5)]">
-            STATION
+          <h1 class="text-6xl md:text-8xl font-black tracking-widest text-primary drop-shadow-glow">
+            RADIO
           </h1>
         </div>
         <div class="pt-8">

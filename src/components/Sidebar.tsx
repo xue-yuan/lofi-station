@@ -46,7 +46,7 @@ const Sidebar: Component = () => {
                 {(log, index) => (
                   <div class="relative pl-6">
                     <div
-                      class={`absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 ${index() === 0 ? "bg-primary border-primary shadow-[0_0_10px_rgba(var(--p)/0.5)]" : "bg-black border-white/20"}`}
+                      class={`absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 ${index() === 0 ? "bg-primary border-primary shadow-glow-sm" : "bg-black border-white/20"}`}
                     />
                     <div class="flex flex-col gap-2">
                       <div class="flex items-baseline justify-between">

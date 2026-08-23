@@ -40,6 +40,7 @@ const InfoPanel: Component<InfoPanelProps> = (props) => {
       activeTab={props.activeTab}
       onSelectTab={(id) => props.onSelectTab(id as InfoTab)}
       tabs={TABS}
+      spawnOffset={{ x: 180, y: 0 }}
       icon={
         <svg
           xmlns="http://www.w3.org/2000/svg"

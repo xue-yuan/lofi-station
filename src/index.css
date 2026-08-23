@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: luxury, business, coffee, forest, night, sunset, lofi, black, retro, synthwave, dark;
+  themes:
+    luxury, business, coffee, forest, night, sunset, lofi, black, retro, synthwave, dark, dracula,
+    aqua;
 }
 
 html,
@@ -75,6 +77,10 @@ textarea {
 
 @utility shadow-glow-sm {
   box-shadow: 0 0 8px color-mix(in oklch, var(--color-primary) 40%, transparent);
+}
+
+@utility drop-shadow-glow {
+  filter: drop-shadow(0 0 25px color-mix(in oklch, var(--color-primary) 50%, transparent));
 }
 
 @utility marquee-mask {

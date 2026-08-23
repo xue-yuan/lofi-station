@@ -106,7 +106,7 @@ const StationSelector: Component<StationSelectorProps> = (props) => {
                     onClick={() => handleCategoryClick(category)}
                   >
                     <div class="flex-1 min-w-0">
-                      <div class="font-bold text-sm text-white truncate text-lg tracking-wide">
+                      <div class="font-bold text-lg text-white truncate tracking-wide">
                         {category.name}
                       </div>
                       <div class="text-xs text-white/50 truncate">{category.description}</div>
@@ -157,7 +157,7 @@ const StationSelector: Component<StationSelectorProps> = (props) => {
               <For each={selectedCategory()?.channels.filter(isChannelAvailable)}>
                 {(channel) => (
                   <button
-                    class={`flex items-center gap-3 p-2 rounded-lg transition-all text-left w-full border border-transparent group overflow-hidden ${playerState.currentChannelId === channel.id ? "bg-primary/20 border-primary/50 shadow-[0_0_15px_rgba(var(--p)/0.3)]" : "bg-black/20 hover:bg-white/10 hover:border-white/10"}`}
+                    class={`flex items-center gap-3 p-2 rounded-lg transition-all text-left w-full border border-transparent group overflow-hidden ${playerState.currentChannelId === channel.id ? "bg-primary/20 border-primary/50 shadow-glow" : "bg-black/20 hover:bg-white/10 hover:border-white/10"}`}
                     onClick={() => {
                       playChannel(selectedCategory()!.id, channel.id);
                       props.onClose();

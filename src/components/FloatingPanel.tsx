@@ -16,6 +16,7 @@ interface FloatingPanelProps {
   tabs: PanelTab[];
   activeTab: string;
   onSelectTab: (id: string) => void;
+  spawnOffset?: { x: number; y: number };
   children: JSX.Element;
 }
 
@@ -28,6 +29,9 @@ const FloatingPanel: Component<FloatingPanelProps> = (props) => {
     width: PANEL_WIDTH,
     height: PANEL_HEIGHT,
     isActive: () => props.isOpen && isDesktop(),
+    get offset() {
+      return props.spawnOffset;
+    },
   });
 
   let containerRef: HTMLDivElement | undefined;

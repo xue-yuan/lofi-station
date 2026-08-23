@@ -215,7 +215,10 @@ const App: Component = () => {
     ambient: { ...ambientMix },
   });
 
-  createEffect(() => syncAddressBar(shareState()));
+  createEffect(() => {
+    if (!hasStarted()) return;
+    syncAddressBar(shareState());
+  });
 
   const handleShare = async () => {
     const result = await copyToClipboard(currentShareUrl(shareState()));

@@ -4,6 +4,7 @@ export interface DraggableOptions {
   width: number;
   height: number;
   isActive: Accessor<boolean>;
+  offset?: { x: number; y: number };
 }
 
 export interface Draggable {
@@ -27,10 +28,11 @@ export const createDraggable = (options: DraggableOptions): Draggable => {
   let hasBeenPlaced = false;
 
   const centre = () => {
+    const spawn = options.offset ?? { x: 0, y: 0 };
     setPosition(
       clampToViewport(
-        (window.innerWidth - options.width) / 2,
-        (window.innerHeight - options.height) / 2,
+        (window.innerWidth - options.width) / 2 + spawn.x,
+        (window.innerHeight - options.height) / 2 + spawn.y,
         options.width,
         options.height,
       ),

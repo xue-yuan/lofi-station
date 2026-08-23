@@ -15,8 +15,10 @@ export const THEMES: ThemeOption[] = [
   { id: "retro", name: "Retro", color: "#EF9995" },
   { id: "synthwave", name: "Synth", color: "#E779C1" },
   { id: "dark", name: "Daisy", color: "#7480ff" },
+  { id: "dracula", name: "Dracula", color: "#FF79C6" },
+  { id: "aqua", name: "Aqua", color: "#09ECF3" },
 ];
 
-export const DEFAULT_THEME = "luxury";
+export const DEFAULT_THEME = "sunset";
 
 export const isValidTheme = (id: string): boolean => THEMES.some((t) => t.id === id);

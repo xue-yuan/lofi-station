@@ -28,6 +28,7 @@ const WidgetPanel: Component<WidgetPanelProps> = (props) => {
       activeTab={activeTab()}
       onSelectTab={(id) => setActiveTab(id as WidgetTab)}
       tabs={TABS}
+      spawnOffset={{ x: -180, y: 0 }}
       icon={
         <svg
           xmlns="http://www.w3.org/2000/svg"

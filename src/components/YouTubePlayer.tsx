@@ -2,6 +2,7 @@ import { onMount, onCleanup, createEffect, createSignal, Show, type Component } 
 import {
   playerState,
   setPlaying,
+  setMuted,
   setLoading,
   isMusicSilenced,
   playRandomChannel,
@@ -19,12 +20,14 @@ import LoadingOverlay from "./LoadingOverlay";
 const IFRAME_API_SRC = "https://www.youtube.com/iframe_api";
 
 const FATAL_ERRORS: YT.PlayerError[] = [2, 5, 100, 101, 150];
+const LOAD_TIMEOUT_MS = 10_000;
 
 const YouTubePlayer: Component = () => {
   let player: YT.Player | undefined;
   let lastLoadedVideoId = "";
   let skipTimer: ReturnType<typeof setTimeout> | undefined;
   const [isPlayerReady, setPlayerReady] = createSignal(false);
+  const [isTuningIn, setTuningIn] = createSignal(true);
 
   const createPlayer = () => {
     if (player || !window.YT) return;
@@ -120,6 +123,21 @@ const YouTubePlayer: Component = () => {
   };
 
   createEffect(() => {
+    if (playerState.isLoading || !isTuningIn()) return;
+    const timer = setTimeout(() => setTuningIn(false), 700);
+    onCleanup(() => clearTimeout(timer));
+  });
+
+  createEffect(() => {
+    if (!playerState.isLoading) return;
+    const timer = setTimeout(() => {
+      console.warn("YouTube player never reported ready; releasing the loading state");
+      setLoading(false);
+    }, LOAD_TIMEOUT_MS);
+    onCleanup(() => clearTimeout(timer));
+  });
+
+  createEffect(() => {
     if (!isPlayerReady() || !player) return;
     player.setVolume(playerState.volume);
   });
@@ -149,11 +167,11 @@ const YouTubePlayer: Component = () => {
 
   onMount(() => {
     const dispose = registerMediaSessionHandlers({
-      onPlay: () => setPlaying(true),
-      onPause: () => setPlaying(false),
+      onPlay: () => setMuted(false),
+      onPause: () => setMuted(true),
       onNextTrack: () => playRandomChannel(playerState.currentCategoryId),
       onPreviousTrack: () => playRandomStation(),
-      onStop: () => setPlaying(false),
+      onStop: () => setMuted(true),
     });
     onCleanup(dispose);
   });
@@ -170,19 +188,22 @@ const YouTubePlayer: Component = () => {
   });
 
   createEffect(() => {
-    setMediaPlaybackState(playerState.isPlaying ? "playing" : "paused");
+    const audible = playerState.isPlaying && !playerState.isMuted;
+    setMediaPlaybackState(audible ? "playing" : "paused");
   });
 
   return (
-    <div class="fixed inset-0 overflow-hidden">
-      <Show when={playerState.isLoading}>
-        <LoadingOverlay />
+    <>
+      <Show when={isTuningIn()}>
+        <LoadingOverlay visible={playerState.isLoading} />
       </Show>
-      <div class="w-full h-full pointer-events-none scale-[3] md:scale-[3] lg:scale-[2] xl:scale-[1.35] flex items-center justify-center">
-        <div id="player" />
+      <div class="fixed inset-0 overflow-hidden">
+        <div class="w-full h-full pointer-events-none scale-[3] md:scale-[3] lg:scale-[2] xl:scale-[1.35] flex items-center justify-center">
+          <div id="player" />
+        </div>
+        <div class="absolute top-0 left-0 w-full h-full bg-black/10 z-0 pointer-events-auto cursor-default" />
       </div>
-      <div class="absolute top-0 left-0 w-full h-full bg-black/10 z-0 pointer-events-auto cursor-default" />
-    </div>
+    </>
   );
 };
 
