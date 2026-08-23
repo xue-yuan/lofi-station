@@ -6,13 +6,13 @@ const DigitalClock: Component = () => {
   const timer = setInterval(() => setTime(new Date()), 1000);
   onCleanup(() => clearInterval(timer));
 
-  const format = (num: number) => num.toString().padStart(2, '0');
+  const format = (num: number) => num.toString().padStart(2, "0");
 
   const dateString = () => {
-    return time().toLocaleDateString('en-US', {
-      weekday: 'long',
-      month: 'short',
-      day: 'numeric'
+    return time().toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "short",
+      day: "numeric",
     });
   };
 

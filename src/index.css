@@ -68,3 +68,23 @@ body,
 textarea {
   resize: none;
 }
+
+@utility shadow-glow {
+  box-shadow: 0 0 18px color-mix(in oklch, var(--color-primary) 45%, transparent);
+}
+
+@utility shadow-glow-sm {
+  box-shadow: 0 0 8px color-mix(in oklch, var(--color-primary) 40%, transparent);
+}
+
+@utility marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-fade-in-up {
+    animation: none;
+  }
+}

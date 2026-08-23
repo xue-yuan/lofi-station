@@ -1,42 +1,51 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/new-favicon.png?v=20260419" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260419" />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260419" />
+    <link rel="apple-touch-icon" href="/new-favicon.png?v=20260419" />
+    <meta name="apple-mobile-web-app-title" content="Lofi Radio" />
+    <link rel="manifest" href="/site.webmanifest?v=20260419" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lofi Radio - Your Personal Space for Focus, Relaxation, and Chill Beats</title>
+    <meta
+      name="description"
+      content="Your personal space for focus, relaxation, and chill beats."
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/new-favicon.png?v=20260419" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260419" />
-  <link rel="shortcut icon" href="/favicon.ico?v=20260419" />
-  <link rel="apple-touch-icon" href="/new-favicon.png?v=20260419" />
-  <meta name="apple-mobile-web-app-title" content="Lofi Radio" />
-  <link rel="manifest" href="/site.webmanifest?v=20260419" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lofi Radio - Your Personal Space for Focus, Relaxation, and Chill Beats</title>
-  <meta name="description" content="Your personal space for focus, relaxation, and chill beats." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lofi.tw" />
+    <meta property="og:title" content="Lofi Radio" />
+    <meta
+      property="og:description"
+      content="Your personal space for focus, relaxation, and chill beats."
+    />
+    <meta property="og:image" content="/og-image.png" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://lofi.tw" />
-  <meta property="og:title" content="Lofi Radio" />
-  <meta property="og:description" content="Your personal space for focus, relaxation, and chill beats." />
-  <meta property="og:image" content="/og-image.png" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://lofi.tw" />
+    <meta property="twitter:title" content="Lofi Radio" />
+    <meta
+      property="twitter:description"
+      content="Your personal space for focus, relaxation, and chill beats."
+    />
+    <meta property="twitter:image" content="/og-image.png" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQDZ6T7JJY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://lofi.tw" />
-  <meta property="twitter:title" content="Lofi Radio" />
-  <meta property="twitter:description" content="Your personal space for focus, relaxation, and chill beats." />
-  <meta property="twitter:image" content="/og-image.png" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQDZ6T7JJY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      gtag("config", "G-QQDZ6T7JJY");
+    </script>
+  </head>
 
-    gtag('config', 'G-QQDZ6T7JJY');
-  </script>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/index.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
 </html>

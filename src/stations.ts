@@ -1,4 +1,4 @@
-import stationsData from './stations.json';
+import stationsData from "./stations.json";
 
 export interface Channel {
   id: string;
@@ -15,3 +15,16 @@ export interface StationCategory {
 }
 
 export const STATION_CATEGORIES: StationCategory[] = stationsData as StationCategory[];
+
+export const findCategory = (categoryId: string): StationCategory | undefined =>
+  STATION_CATEGORIES.find((c) => c.id === categoryId);
+
+export const findChannel = (
+  channelId: string,
+): { category: StationCategory; channel: Channel } | undefined => {
+  for (const category of STATION_CATEGORIES) {
+    const channel = category.channels.find((c) => c.id === channelId);
+    if (channel) return { category, channel };
+  }
+  return undefined;
+};

@@ -1,110 +1,131 @@
 [
-    {
-        "version": "1.5.2",
-        "date": "2026-06-16",
-        "changes": [
-            "Performance: Optimized title marquee scroll to only animate when title text overflows display limits.",
-            "UX: Added floating glassmorphic HUD visual overlay feedback for keyboard shortcuts.",
-            "UX: Enabled Space key quick-start from Welcome Screen with a pulsing text hint.",
-            "Links: Integrated direct YouTube video links on player track titles.",
-            "Audio: Replaced the ambient rain sound effect with a higher quality, smoother loop."
-        ]
-    },
-    {
-        "version": "1.5.1",
-        "date": "2026-04-18",
-        "changes": [
-            "Automation: Implemented GitHub Actions for daily YouTube link health checks.",
-            "UX: Added automatic 'broken link' detection and session-based auto-skip for interrupted streams.",
-            "Scripting: Added utility scripts for automated station pruning and metadata fetching via oEmbed API."
-        ]
-    },
-    {
-        "version": "1.5.0",
-        "date": "2026-04-12",
-        "changes": [
-            "Content Expansion: Significant expansion of the station database with over 30+ new high-quality channels.",
-            "Architecture: Migrated station data to an externalized JSON structure for easier automation and maintenance.",
-            "New Genres: Introduced 'Deep House', 'Trip', and 'Tropical House' categories to the station roster."
-        ]
-    },
-    {
-        "version": "1.4.3",
-        "date": "2026-01-31",
-        "changes": [
-            "Feature: Added draggable 'Info Panel' for community notices and shortcuts.",
-            "UX Improvement: 'Tune In' now randomly selects a channel for a fresh start every time.",
-            "Shortcuts: Remapped 'M' to shuffle Stations and 'N' to shuffle Channels.",
-            "Content: Added new 'J-Pop' category and expanded Lofi/R&B selections.",
-            "Visual: Refactored Welcome Screen and Menu integration."
-        ]
-    },
-    {
-        "version": "1.4.2",
-        "date": "2025-12-19",
-        "changes": [
-            "Unified Mute: Muting the player now also silences all ambient sounds.",
-            "Visual Tweaks: Increased opacity of menus (Ambient, Stations, Themes) for better readability when overlapping."
-        ]
-    },
-    {
-        "version": "1.4.1",
-        "date": "2025-12-12",
-        "changes": [
-            "Mobile Optimization: Station Selector is now fixed at the bottom center to prevent overlapping.",
-            "Tablet Layout: Control Panel now uses vertical stack layout on tablet (md) screens for better touch usability.",
-            "Clock Positioning: Adjusted Digital Clock dynamic positioning to adapt to vertical/horizontal Control Panel.",
-            "Mobile Experience: Automatically hide complex widgets (Notes, Tasks) on small screens for cleaner UI."
-        ]
-    },
-    {
-        "version": "1.4.0",
-        "date": "2025-12-11",
-        "changes": [
-            "Draggable Widgets: Widget Panel is now a floating, persistent window that can be dragged anywhere.",
-            "Immersive Integration: Widgets now respect Zen Mode and auto-hide with the interface.",
-            "Assets Overhaul: New calm, abstract Favicon and atmospheric Open Graph image.",
-            "Visual Refinements: Standardized headers, repositioned clock, and enhanced transparency.",
-            "SEO: Added comprehensive Open Graph meta tags."
-        ]
-    },
-    {
-        "version": "1.3.0",
-        "date": "2025-12-10",
-        "changes": [
-            "Theme Palette: Added 10+ themes including Classic, Retro, Cyber, and Daisy.",
-            "Multi-page Notes: Notes widget now supports 3 independent pages.",
-            "Widget Panel: Standardized height and improved layout stability.",
-            "New Genre: Added 'House' category.",
-            "UI Refinements: Improved control panel positioning and menu spacing."
-        ]
-    },
-    {
-        "version": "1.2.0",
-        "date": "2025-12-09",
-        "changes": [
-            "Unified Menu System: Consolidated Stations, Ambient, and Widgets into a central bottom dock.",
-            "Visual Polish: Added cinematic vignette overlay and authentic dark glassmorphism.",
-            "Layout: Centered Control Panel and Menus for a balanced, symmetrical design.",
-            "Info: Added Station Category display to the Now Playing section."
-        ]
-    },
-    {
-        "version": "1.1.0",
-        "date": "2025-12-08",
-        "changes": [
-            "Added Productivity Widgets: Pomodoro Timer, Todo List, and Notes.",
-            "Implemented Ambient Mixer with Rain, Fire, Birds, and Thunder sounds.",
-            "Added Immersive Mode (Zen Mode) to hide UI elements."
-        ]
-    },
-    {
-        "version": "1.0.0",
-        "date": "2025-12-07",
-        "changes": [
-            "Initial Release: Lofi Station Radio.",
-            "Core Player: Robust YouTube playback with autoplay handling.",
-            "Station Selector: Categorized lofi channels."
-        ]
-    }
+  {
+    "version": "1.6.0",
+    "date": "2026-08-23",
+    "changes": [
+      "Mobile: Widgets, themes, ambient mixer and info are now available on phones as bottom sheets — they were previously desktop-only.",
+      "Timer: Pomodoro now counts real elapsed time, so a backgrounded tab no longer stretches a 25-minute block.",
+      "Timer: Durations, custom sequences and auto-start are remembered between visits; the daily tomato counter resets correctly at midnight.",
+      "Playback: Volume and your last station are restored on reload, and ambient mixes persist too.",
+      "Playback: Media keys, headset buttons and the OS lock screen now control playback via the Media Session API.",
+      "Shortcuts: Added A for ambient-only, F for immersive mode, ? for the shortcut list, 1-9 to jump between stations, and Esc to close panels.",
+      "Reliability: Channels that fail to embed are skipped once per session instead of being retried in a loop.",
+      "Reliability: The nightly link check now detects videos that disallow embedding, which oEmbed could not see.",
+      "Accessibility: Panels are keyboard-navigable with focus trapping, and every icon-only control has a label.",
+      "Ambient: Added preset mixes (Rainy Night, Forest Morning, Campfire, Storm) that fill in the sliders as a starting point — every level stays adjustable.",
+      "Sharing: Added a share button that copies a link carrying the current station, theme and ambient mix; the address bar stays in sync as you change them.",
+      "Ambient: Added an “Ambient Only” switch that mutes the music while the ambient mix keeps playing — the master mute still silences everything, toggled from the mixer or with the A key.",
+      "UI: Rebuilt the control bar — the secondary icons are now grouped instead of nine loose buttons in a row, with breathing room and clearer separators.",
+      "UI: The track title now fades at the edges while scrolling instead of being cut off mid-word.",
+      "Fix: Opening a shared link no longer jumps to a random station when you press play."
+    ]
+  },
+  {
+    "version": "1.5.2",
+    "date": "2026-06-16",
+    "changes": [
+      "Performance: Optimized title marquee scroll to only animate when title text overflows display limits.",
+      "UX: Added floating glassmorphic HUD visual overlay feedback for keyboard shortcuts.",
+      "UX: Enabled Space key quick-start from Welcome Screen with a pulsing text hint.",
+      "Links: Integrated direct YouTube video links on player track titles.",
+      "Audio: Replaced the ambient rain sound effect with a higher quality, smoother loop."
+    ]
+  },
+  {
+    "version": "1.5.1",
+    "date": "2026-04-18",
+    "changes": [
+      "Automation: Implemented GitHub Actions for daily YouTube link health checks.",
+      "UX: Added automatic 'broken link' detection and session-based auto-skip for interrupted streams.",
+      "Scripting: Added utility scripts for automated station pruning and metadata fetching via oEmbed API."
+    ]
+  },
+  {
+    "version": "1.5.0",
+    "date": "2026-04-12",
+    "changes": [
+      "Content Expansion: Significant expansion of the station database with over 30+ new high-quality channels.",
+      "Architecture: Migrated station data to an externalized JSON structure for easier automation and maintenance.",
+      "New Genres: Introduced 'Deep House', 'Trip', and 'Tropical House' categories to the station roster."
+    ]
+  },
+  {
+    "version": "1.4.3",
+    "date": "2026-01-31",
+    "changes": [
+      "Feature: Added draggable 'Info Panel' for community notices and shortcuts.",
+      "UX Improvement: 'Tune In' now randomly selects a channel for a fresh start every time.",
+      "Shortcuts: Remapped 'M' to shuffle Stations and 'N' to shuffle Channels.",
+      "Content: Added new 'J-Pop' category and expanded Lofi/R&B selections.",
+      "Visual: Refactored Welcome Screen and Menu integration."
+    ]
+  },
+  {
+    "version": "1.4.2",
+    "date": "2025-12-19",
+    "changes": [
+      "Unified Mute: Muting the player now also silences all ambient sounds.",
+      "Visual Tweaks: Increased opacity of menus (Ambient, Stations, Themes) for better readability when overlapping."
+    ]
+  },
+  {
+    "version": "1.4.1",
+    "date": "2025-12-12",
+    "changes": [
+      "Mobile Optimization: Station Selector is now fixed at the bottom center to prevent overlapping.",
+      "Tablet Layout: Control Panel now uses vertical stack layout on tablet (md) screens for better touch usability.",
+      "Clock Positioning: Adjusted Digital Clock dynamic positioning to adapt to vertical/horizontal Control Panel.",
+      "Mobile Experience: Automatically hide complex widgets (Notes, Tasks) on small screens for cleaner UI."
+    ]
+  },
+  {
+    "version": "1.4.0",
+    "date": "2025-12-11",
+    "changes": [
+      "Draggable Widgets: Widget Panel is now a floating, persistent window that can be dragged anywhere.",
+      "Immersive Integration: Widgets now respect Zen Mode and auto-hide with the interface.",
+      "Assets Overhaul: New calm, abstract Favicon and atmospheric Open Graph image.",
+      "Visual Refinements: Standardized headers, repositioned clock, and enhanced transparency.",
+      "SEO: Added comprehensive Open Graph meta tags."
+    ]
+  },
+  {
+    "version": "1.3.0",
+    "date": "2025-12-10",
+    "changes": [
+      "Theme Palette: Added 10+ themes including Classic, Retro, Cyber, and Daisy.",
+      "Multi-page Notes: Notes widget now supports 3 independent pages.",
+      "Widget Panel: Standardized height and improved layout stability.",
+      "New Genre: Added 'House' category.",
+      "UI Refinements: Improved control panel positioning and menu spacing."
+    ]
+  },
+  {
+    "version": "1.2.0",
+    "date": "2025-12-09",
+    "changes": [
+      "Unified Menu System: Consolidated Stations, Ambient, and Widgets into a central bottom dock.",
+      "Visual Polish: Added cinematic vignette overlay and authentic dark glassmorphism.",
+      "Layout: Centered Control Panel and Menus for a balanced, symmetrical design.",
+      "Info: Added Station Category display to the Now Playing section."
+    ]
+  },
+  {
+    "version": "1.1.0",
+    "date": "2025-12-08",
+    "changes": [
+      "Added Productivity Widgets: Pomodoro Timer, Todo List, and Notes.",
+      "Implemented Ambient Mixer with Rain, Fire, Birds, and Thunder sounds.",
+      "Added Immersive Mode (Zen Mode) to hide UI elements."
+    ]
+  },
+  {
+    "version": "1.0.0",
+    "date": "2025-12-07",
+    "changes": [
+      "Initial Release: Lofi Radio.",
+      "Core Player: Robust YouTube playback with autoplay handling.",
+      "Station Selector: Categorized lofi channels."
+    ]
+  }
 ]
